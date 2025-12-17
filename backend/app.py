@@ -30,7 +30,11 @@ def get_video_info():
         if not url:
             return jsonify({'error': 'URL is required'}), 400
 
-        ydl_opts = {'quiet': True, 'no_warnings': True}
+        ydl_opts = {
+            'quiet': True,
+            'no_warnings': True,
+            'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
+        }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
             
@@ -74,7 +78,8 @@ def download_video():
                     'preferredcodec': 'mp3',
                     'preferredquality': '192',
                 }],
-                'quiet': True
+                'quiet': True,
+                'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
             }
         else:
             output_path = os.path.join(DOWNLOAD_DIR, f'{file_id}.mp4')
@@ -83,7 +88,8 @@ def download_video():
                 'format': format_str,
                 'outtmpl': output_path,
                 'merge_output_format': 'mp4',
-                'quiet': True
+                'quiet': True,
+                'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
             }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
