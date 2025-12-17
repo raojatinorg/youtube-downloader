@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: yt-downloader-backend
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && python app.py
+    envVars:
+      - key: PORT
+        value: 5000

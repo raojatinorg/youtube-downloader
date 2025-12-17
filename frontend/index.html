@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Fast and easy YouTube video downloader">
+    <title>YT Downloader</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="images/icon-192.png">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 YT Downloader</h1>
+            <p>Fast, simple, powerful</p>
+        </header>
+
+        <main id="app">
+            <div id="step-url" class="step active">
+                <input 
+                    type="text" 
+                    id="url-input" 
+                    placeholder="Paste YouTube URL here..."
+                    autocomplete="off"
+                >
+                <button id="fetch-btn" class="btn-primary">Get Video</button>
+                <div id="error-msg" class="error"></div>
+            </div>
+
+            <div id="step-options" class="step">
+                <div class="video-info">
+                    <img id="thumbnail" src="" alt="Thumbnail">
+                    <h2 id="video-title"></h2>
+                </div>
+
+                <div class="options">
+                    <div class="option-group">
+                        <label>Format</label>
+                        <div class="btn-group">
+                            <button class="btn-option active" data-format="mp4">MP4 (Video)</button>
+                            <button class="btn-option" data-format="mp3">MP3 (Audio)</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group" id="quality-group">
+                        <label>Quality</label>
+                        <div class="btn-group" id="quality-options"></div>
+                    </div>
+                </div>
+
+                <button id="download-btn" class="btn-primary">Download</button>
+                <button id="back-btn" class="btn-secondary">New Video</button>
+            </div>
+
+            <div id="step-downloading" class="step">
+                <div class="loader"></div>
+                <p>Processing your download...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with yt-dlp • PWA Ready</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
