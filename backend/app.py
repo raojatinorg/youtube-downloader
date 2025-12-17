@@ -33,8 +33,7 @@ def get_video_info():
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'extractor_args': {'youtube': {'player_client': ['ios']}},
-            'cookiesfrombrowser': ('chrome',)
+            'extractor_args': {'youtube': {'player_client': ['ios']}}
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -80,8 +79,7 @@ def download_video():
                     'preferredquality': '192',
                 }],
                 'quiet': True,
-                'extractor_args': {'youtube': {'player_client': ['ios']}},
-                'cookiesfrombrowser': ('chrome',)
+                'extractor_args': {'youtube': {'player_client': ['ios']}}
             }
         else:
             output_path = os.path.join(DOWNLOAD_DIR, f'{file_id}.mp4')
@@ -91,8 +89,7 @@ def download_video():
                 'outtmpl': output_path,
                 'merge_output_format': 'mp4',
                 'quiet': True,
-                'extractor_args': {'youtube': {'player_client': ['ios']}},
-                'cookiesfrombrowser': ('chrome',)
+                'extractor_args': {'youtube': {'player_client': ['ios']}}
             }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
